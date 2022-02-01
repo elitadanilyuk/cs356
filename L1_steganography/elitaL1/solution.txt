@@ -1,0 +1,10 @@
+Elita Danilyuk
+What to turn in to CANVAS
+Create a text file named solution.txt describing
+
+1) JoePhoto2.png contained the document
+2) The Declaration of Independence of The United States of America
+
+Create a tarball image that contains both solution.txt and your encoded png image file. We will decode the image to make sure you did this correctly.
+
+Submit the tarball to canvas.
