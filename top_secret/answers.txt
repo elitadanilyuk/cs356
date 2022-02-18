@@ -1,0 +1,32 @@
+Elita Danilyuk
+elita@colostate.edu
+cos356aw
+
+Image 1
+	/.hidden/asdf136Intro-5kqlw.jpeg
+	2001 a space odyssey
+
+Image 2
+	/etc/wuer136intro-4.JPG
+	The Fly:  She had to kill the thing her husband had become
+
+Image 3
+	/usr/share/pixmaps/xbzf136INTRO-1.jpg
+	Forbidden Planet
+
+Image 4
+	/var/log/136intro-3.jpg
+	It came from outer space
+
+Image 5
+	/dev/136intro-2jjaj.JPEG/.hidden/asdf136Intro-5kqlw.jpeg
+	Godzilla: King of the Monsters!
+
+1. 1 sentence: What goes in the /var directory on a UNIX computer?
+	/var contains files to which the system writes data during the course of its operation (variable data).
+2. 1 sentence: What is the /dev directory for on a UNIX computer?
+	/dev consists of files that represent devices that are attached to the local system (device files).
+3. On your experimental node, find out how large the disks are and how much space is free. Put this information in a separate file called top_secret/diskfree.txt. (See the infobox on command redirection for an easy way to do this.)
+	*see diskfree.txt
+4. On your experimental node, find out the "vendor id" of the experimental node's CPU model. (device files)
+	GenuineIntel
