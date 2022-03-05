@@ -1,0 +1,17 @@
+Memo: Buffer Overflow Vulnerability in fhttpd
+
+~Overview
+A buffer overflow vulnerability was found in the fhttpd program. This vulnerability crashes the application and allows for unauthorized access to root on the machine that the program is running on. This vulnerability can be exploited by sending a http request with a URL longer than 1024 characters.
+
+~Fix
+This vulnerability can be fixed by putting checks in the code that assert that none of the data being written to the sendmessage array in the send_response function will overflow the size of the array. Another worthwhile change would be to not have this application run with root privileges in the future.
+
+~Demo
+A demo of this exploit can be found in the exploit1.sh file. This file will send the HTTP request located in the payload1 file to the server running on port 8081 (this port can be changed in the script). After the server received this request, it will crash due to a segmentation fault.
+
+~Severity
+The severity of this vulnerability is extremely high. Any user with network access to the fhttpd application can send malicious requests that will crash the application. These requests can also write malicious data into adjacent memory to the application, leaving the machine open to RCE exploits or many other malicious activities.
+
+~Recovery Plan
+Take the application down and replace it with a 3rd party webserver. This 3rd party webserver application should be widely used and vetted, and will most likely have no security vulnerabilities similar to the one found here.
+
