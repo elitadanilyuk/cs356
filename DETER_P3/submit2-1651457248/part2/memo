@@ -1,0 +1,17 @@
+Part 2: Common Filesystem Exploits -- The Memo Software
+
+Description:
+    A pathname attack is an exploitation of unsafe filesystem practices. Filesystem permissions and pathnames are a critical aspect of system security. If these permissions and pathnames are not set properly across an organization, attackers can test for exploits such as this. Filesystem permissions should be set globally and any software within the organization should perform input validation.
+
+Severity:
+    If filesystem permissions and pathnames are not set properly for all users and software, then unprivileged attackers can easily access files that are significant to organizational security. An example of this would be the ability to access an organizations shadow password file. If an attacker gained access to this file, they could easily infiltrate the whole organization through the system users' passwords.
+
+Demo:
+    This flaw is visible by changing the url path on the memo software page at "http://localhost/cgi-bin/memo.cgi". The URL can be changed to include the memo variable with it equivalent to /etc/shadow. This will result with the /etc/shadow file printing it as a viewable memo without any necessary permissions.
+
+    The exploit is visible in the exploit2.sh file. This file will send the HTTP request with the flawed URL which prints the results of the HTTP request into the shadow.txt file.
+
+Recovery Plan:
+    This security breach is of highest severity. If an attacker gained access to the shadow password file they could gain any information within the organization. There are two steps FrobozzCo should move forward with to secure their server. The first thing they should do is be sure that their filesystem permissions are set globally for their organization. The other step they should take, which is arguably the most important, is to update their memo software. The current code is easily susceptible to a filesystem exploit due to the path parameters being passed. The current code passes the memo as a parameter and sets the memo path to then print the file contents. This section of code should be changed so that the memo input should be validated. The parameter should be validated and hard coded the memos directory, rather than taking input. This way, if a unprivileged attacker/user attempts to change the file path, the input validation will know the path is not in memo, thus it will no longer be vulnerable.
+
+
